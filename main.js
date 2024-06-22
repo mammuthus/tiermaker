@@ -109,10 +109,11 @@ function exportAsPng() {
     const container = document.createElement('div');
     container.style.position = 'absolute';
     container.style.left = '-9999px';
+    container.style.width = tierTable.clientWidth + 'px';
     container.appendChild(tierTableClone);
     document.body.appendChild(container);
 
-    html2canvas(tierTableClone).then(canvas => {
+    html2canvas(container).then(canvas => {
         const a = document.createElement('a');
         a.href = canvas.toDataURL('image/png');
         a.download = 'tier-list.png';
