@@ -13,16 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsBlock = document.getElementById('settings-block');
     const applySettingsButton = document.getElementById('apply-settings-button');
 
-    
     window.soundsEnabled = JSON.parse(localStorage.getItem('soundsEnabled')) ?? true;
-
-    
     toggleSoundsButton.innerHTML = `<span class="material-icons">${window.soundsEnabled ? 'volume_up' : 'volume_off'}</span>`;
-
-    
     itemInput.disabled = true;
-    addButton.disabled = true; 
-    undoButton.disabled = true; 
+    addButton.disabled = true;
+    undoButton.disabled = true;
 
     settingsButton.addEventListener('click', () => {
         settingsBlock.classList.toggle('hidden');
@@ -32,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleSoundsButton.addEventListener('click', () => {
         window.soundsEnabled = !window.soundsEnabled;
-        localStorage.setItem('soundsEnabled', JSON.stringify(window.soundsEnabled)); 
+        localStorage.setItem('soundsEnabled', JSON.stringify(window.soundsEnabled));
         toggleSoundsButton.innerHTML = `<span class="material-icons">${window.soundsEnabled ? 'volume_up' : 'volume_off'}</span>`;
     });
 
@@ -43,14 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedTier = null;
                 itemInput.disabled = true;
                 itemInput.placeholder = "Сначала выбери Tier";
-                addButton.disabled = true; 
+                addButton.disabled = true;
             } else {
                 tiers.forEach(t => t.classList.remove('selected'));
                 tier.classList.add('selected');
                 selectedTier = tier.dataset.tier;
                 itemInput.disabled = false;
                 itemInput.placeholder = `Добавь элемент в ${selectedTier} Tier`;
-                addButton.disabled = false; 
+                addButton.disabled = false;
             }
         });
     });
@@ -58,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addButton.addEventListener('click', () => {
         const text = itemInput.value.trim();
         if (text && selectedTier) {
-            savePreviousState(); 
+            savePreviousState();
             const tierItems = document.querySelector(`.tier-items[data-tier="${selectedTier}-items"]`);
             const item = createTierItem(text);
             tierItems.appendChild(item);
@@ -66,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
             saveBoard();
             if (window.soundsEnabled) {
                 if (selectedTier === 'S') {
-                    playRandomAudio(sTierAudios); 
+                    playRandomAudio(sTierAudios);
                 } else if (selectedTier === 'D') {
-                    playRandomAudio(dTierAudios); 
+                    playRandomAudio(dTierAudios);
                 }
             }
         }
@@ -98,5 +93,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     loadBoard();
-    loadTierSettings(); 
+    loadTierSettings();
 });
+
+function exportAsPng() {
+    const tierTable = document.querySelector('.tier-table');
+    if (!tierTable) return;
+    const tierTableClone = tierTable.cloneNode(true);
+
+    const lastRow = tierTableClone.querySelector('tr:last-child');
+    if (lastRow) {
+        lastRow.remove();
+    }
+
+    const container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.left = '-9999px';
+    container.appendChild(tierTableClone);
+    document.body.appendChild(container);
+
+    html2canvas(tierTableClone).then(canvas => {
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = 'tier-list.png';
+        a.click();
+
+        document.body.removeChild(container);
+    });
+}
