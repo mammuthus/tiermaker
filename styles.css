@@ -68,6 +68,12 @@ body {
     border-radius: 0; 
 }
 
+.tier-row.selected::before {
+    content: '★';
+    color: #000000;
+    font-size: 18px;
+}
+
 .tier-row[data-tier="S"] { background-color: #ff6f6f; }
 .tier-row[data-tier="A"] { background-color: #ffab40; }
 .tier-row[data-tier="B"] { background-color: #ffeb3b; }

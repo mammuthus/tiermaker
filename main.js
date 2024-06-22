@@ -109,11 +109,13 @@ function exportAsPng() {
         lastRow.parentNode.removeChild(lastRow);
     }
 
+    const selectedRows = clonedTable.querySelectorAll('.selected');
+    selectedRows.forEach(row => row.classList.remove('selected'));
     const tempContainer = document.createElement('div');
     tempContainer.style.position = 'absolute';
     tempContainer.style.left = '-9999px';
-    tempContainer.style.width = originalTable.clientWidth + 'px'; // Match the original table width
-    tempContainer.style.backgroundColor = getComputedStyle(originalTable).backgroundColor; // Match the original background color
+    tempContainer.style.width = originalTable.clientWidth + 'px';
+    tempContainer.style.backgroundColor = getComputedStyle(originalTable).backgroundColor;
     tempContainer.appendChild(clonedTable);
     document.body.appendChild(tempContainer);
 
