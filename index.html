@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier Maker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="button-panel.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+</head>    
+<body>
+    <table class="tier-table">
+        <tr>
+            <td class="tier-row" data-tier="S">
+                <span>S</span>
+                <span class="tier-subtitle" data-tier="S-subtitle">Супер</span>
+            </td>
+            <td class="tier-items" data-tier="S-items"></td>
+        </tr>
+        <tr>
+            <td class="tier-row" data-tier="A">
+                <span>A</span>
+                <span class="tier-subtitle" data-tier="A-subtitle">Отлично</span>
+            </td>
+            <td class="tier-items" data-tier="A-items"></td>
+        </tr>
+        <tr>
+            <td class="tier-row" data-tier="B">
+                <span>B</span>
+                <span class="tier-subtitle" data-tier="B-subtitle">Хорошо</span>
+            </td>
+            <td class="tier-items" data-tier="B-items"></td>
+        </tr>
+        <tr>
+            <td class="tier-row" data-tier="C">
+                <span>C</span>
+                <span class="tier-subtitle" data-tier="C-subtitle">Сойдет</span>
+            </td>
+            <td class="tier-items" data-tier="C-items"></td>
+        </tr>
+        <tr>
+            <td class="tier-row" data-tier="D">
+                <span>D</span>
+                <span class="tier-subtitle" data-tier="D-subtitle">Посредственно</span>
+            </td>
+            <td class="tier-items" data-tier="D-items"></td>
+        </tr>
+        <tr>
+            <td class="tier-row" data-tier="E">
+                <span>База</span>
+                <span class="tier-subtitle" data-tier="E-subtitle"></span>
+            </td>
+            <td class="tier-items" data-tier="E-items"></td>
+        </tr>
+    </table>
+
+    <div class="input-form">
+        <button id="undo-button" title="Отменить последнее действие"><span class="material-icons">undo</span></button>
+        <input type="text" id="item-input" placeholder="Сначала выбери Tier" disabled>
+        <button id="add-button" title="Добавить новый элемент"><span class="material-icons">add</span></button>
+    </div>
+
+    <div id="settings-block" class="settings-block hidden">
+        <h2>Настройки</h2>
+        <div class="settings-grid">
+            <div class="settings-row">
+                <input type="color" id="tier-s-color" class="color-picker" value="#ff6f6f">
+                <input type="text" id="tier-s-subtitle" class="input-field" value="Супер">
+            </div>
+            <div class="settings-row">
+                <input type="color" id="tier-a-color" class="color-picker" value="#ffab40">
+                <input type="text" id="tier-a-subtitle" class="input-field" value="Отлично">
+            </div>
+            <div class="settings-row">
+                <input type="color" id="tier-b-color" class="color-picker" value="#ffeb3b">
+                <input type="text" id="tier-b-subtitle" class="input-field" value="Хорошо">
+            </div>
+            <div class="settings-row">
+                <input type="color" id="tier-c-color" class="color-picker" value="#81c784">
+                <input type="text" id="tier-c-subtitle" class="input-field" value="Сойдет">
+            </div>
+            <div class="settings-row">
+                <input type="color" id="tier-d-color" class="color-picker" value="#4fc3f7">
+                <input type="text" id="tier-d-subtitle" class="input-field" value="Посредственно">
+            </div>
+            <div class="settings-row">
+                <input type="color" id="tier-e-color" class="color-picker" value="#3a4043">
+                <input type="text" id="tier-e-subtitle" class="input-field" value="">
+            </div>
+        </div>
+
+        <div class="settings-buttons">
+            <button id="apply-settings-button" class="settings-button">Применить настройки</button>
+            <button id="export-json-button" class="settings-button"><span class="material-icons">save_alt</span> Сохранить доску в JSON</button>
+            <button id="import-button" class="settings-button"><span class="material-icons">file_upload</span> Загрузить доску из JSON</button>
+        </div>
+    </div>
+
+    <div class="button-panel">
+        <button id="clear-button">Очистить всё</button>
+        <button id="export-png-button"><span class="material-icons">image</span> Сохранить картинкой</button>
+        <input type="file" id="import-file" accept=".json" hidden>
+
+        <button id="toggle-sounds-button" title="Toggle Sounds"><span class="material-icons">volume_up</span></button>
+        <button id="settings-button" class="settings-button"><span class="material-icons">settings</span></button>
+    </div>
+
+    <script src="html2canvas.min.js"></script>
+    <script src="board.js"></script>
+    <script src="settings.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

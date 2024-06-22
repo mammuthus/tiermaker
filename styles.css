@@ -1,0 +1,283 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text color */
+}
+
+.tier-table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 80%;
+    table-layout: fixed; /* Ensure static width for the first column */
+    border-radius: 0 !important; /* Ensure no rounded corners */
+}
+
+.tier-table td {
+    border: 1px solid #444; /* Darker border */
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 0 !important; /* Ensure no rounded corners */
+}
+
+.tier-table .tier-row {
+    width: 100px; /* Static width for the first column */
+    height: 100px; /* Ensure cells are square */
+    border-radius: 0 !important; /* Ensure no rounded corners */
+    position: relative;
+}
+
+.tier-row {
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease; /* Ensure smooth transition */
+    font-weight: bold; /* Only tier letter bold */
+    border-radius: 0; /* Remove rounded corners */
+}
+
+.tier-row span {
+    display: block;
+    color: black; /* Ensure tier names are black */
+    font-weight: bold; /* Keep tier title bold */
+}
+
+.tier-row[data-tier="E"] span {
+    color: white; /* Make E-tier name white */
+}
+
+.tier-subtitle {
+    display: block;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 100; /* Light weight */
+    letter-spacing: 0.5px; /* Slightly increase letter spacing */
+}
+
+.tier-title {
+    display: block;
+    color: black;
+    font-weight: 700; /* Bold */
+    font-size: 24px; /* Larger size for main title */
+}
+
+.tier-row.selected {
+    box-shadow: 0 0 0 2px #000000 inset; /* Black border for selected tier */
+    background-color: #333333; /* Darker background for selected tier */
+    border-radius: 0; /* Ensure no rounded corners */
+}
+
+.tier-row[data-tier="S"] { background-color: #ff6f6f; }
+.tier-row[data-tier="A"] { background-color: #ffab40; }
+.tier-row[data-tier="B"] { background-color: #ffeb3b; }
+.tier-row[data-tier="C"] { background-color: #81c784; }
+.tier-row[data-tier="D"] { background-color: #4fc3f7; }
+.tier-row[data-tier="E"] { background-color: #3a4043; } /* Add gray color for E tier */
+
+.tier-items {
+    min-height: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #1e1e1e; /* Dark background for items */
+    text-align: left;
+    font-weight: normal; /* Ensure tier items are not bold */
+    transition: box-shadow 0.2s ease; /* Add transition for smooth visual indication */
+    border-radius: 0 !important; /* Ensure no rounded corners */
+}
+
+.tier-items.drag-over {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle light shadow to indicate drag-over */
+    background-color: inherit; /* Maintain original background color */
+}
+
+.tier-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #444; /* Darker border */
+    margin-bottom: 5px;
+    border-radius: 3px;
+    background-color: #333333; /* Dark background for items */
+    cursor: move; /* Change cursor to indicate draggable items */
+}
+
+.tier-item-container.drag-over-item {
+    border: 2px solid #ffffff; /* Light border for drag-over on item */
+}
+
+.trash-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff5252; /* Light red color */
+    font-size: 16px;
+}
+
+.input-form {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    width: 100%;
+}
+
+#item-input,
+.input-field {
+    padding: 0 10px; /* Adjust padding */
+    height: 40px; /* Keep consistent height */
+    line-height: 40px; /* Match line-height to height */
+    flex-grow: 1;
+    margin: 0 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333333;
+    color: #ffffff;
+    box-sizing: border-box; /* Ensure padding is included in height */
+}
+
+#add-button,
+#undo-button {
+    padding: 0 15px;
+    height: 40px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.material-icons {
+    font-size: 24px; /* Slightly larger icons */
+}
+
+#add-button:hover,
+#undo-button:hover {
+    background-color: #45a049;
+}
+
+#add-button:disabled,
+#undo-button:disabled {
+    background-color: #444;
+    cursor: not-allowed;
+}
+
+/* New styles for the settings block */
+.settings-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 30px;
+    border: 1px solid #444; /* Darker border */
+    border-radius: 8px;
+    background-color: #2a2a2a; /* Dark background */
+    width: 80%;
+    max-width: 600px;
+    margin: 30px auto 100px auto; /* Increase bottom margin */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.settings-block.hidden {
+    display: none;
+}
+
+.settings-block h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.settings-grid {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+}
+
+.settings-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 15px;
+    align-items: center;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #2196f3;
+}
+
+.color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid #4a4a4a;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.color-picker::-webkit-color-swatch {
+    border: none;
+    border-radius: 2px;
+}
+
+.color-picker::-moz-color-swatch {
+    border: none;
+    border-radius: 2px;
+}
+
+.settings-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.settings-button {
+    padding: 10px 20px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1; /* Allow buttons to grow and fill the space */
+    min-width: 200px; /* Set a minimum width for buttons */
+    justify-content: center; /* Center the text and icons */
+}
+
+.settings-button:hover {
+    background-color: #1976d2;
+}
+
+@media (max-width: 600px) {
+    .settings-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .settings-block {
+        padding: 20px;
+    }
+
+    .settings-button {
+        min-width: 100%; /* Make buttons full width on small screens */
+    }
+}
