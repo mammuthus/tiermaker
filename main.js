@@ -13,16 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsBlock = document.getElementById('settings-block');
     const applySettingsButton = document.getElementById('apply-settings-button');
 
-    // Load sound state from localStorage
+    
     window.soundsEnabled = JSON.parse(localStorage.getItem('soundsEnabled')) ?? true;
 
-    // Set initial state of the sound toggle button
+    
     toggleSoundsButton.innerHTML = `<span class="material-icons">${window.soundsEnabled ? 'volume_up' : 'volume_off'}</span>`;
 
-    // Initialization code
+    
     itemInput.disabled = true;
-    addButton.disabled = true; // Disable add button initially
-    undoButton.disabled = true; // Disable undo button initially
+    addButton.disabled = true; 
+    undoButton.disabled = true; 
 
     settingsButton.addEventListener('click', () => {
         settingsBlock.classList.toggle('hidden');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleSoundsButton.addEventListener('click', () => {
         window.soundsEnabled = !window.soundsEnabled;
-        localStorage.setItem('soundsEnabled', JSON.stringify(window.soundsEnabled)); // Save state to localStorage
+        localStorage.setItem('soundsEnabled', JSON.stringify(window.soundsEnabled)); 
         toggleSoundsButton.innerHTML = `<span class="material-icons">${window.soundsEnabled ? 'volume_up' : 'volume_off'}</span>`;
     });
 
@@ -43,14 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedTier = null;
                 itemInput.disabled = true;
                 itemInput.placeholder = "Сначала выбери Tier";
-                addButton.disabled = true; // Disable add button
+                addButton.disabled = true; 
             } else {
                 tiers.forEach(t => t.classList.remove('selected'));
                 tier.classList.add('selected');
                 selectedTier = tier.dataset.tier;
                 itemInput.disabled = false;
                 itemInput.placeholder = `Добавь элемент в ${selectedTier} Tier`;
-                addButton.disabled = false; // Enable add button
+                addButton.disabled = false; 
             }
         });
     });
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addButton.addEventListener('click', () => {
         const text = itemInput.value.trim();
         if (text && selectedTier) {
-            savePreviousState(); // Save state before making changes
+            savePreviousState(); 
             const tierItems = document.querySelector(`.tier-items[data-tier="${selectedTier}-items"]`);
             const item = createTierItem(text);
             tierItems.appendChild(item);
@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
             saveBoard();
             if (window.soundsEnabled) {
                 if (selectedTier === 'S') {
-                    playRandomAudio(sTierAudios); // Play random audio if item is added to 'S' tier
+                    playRandomAudio(sTierAudios); 
                 } else if (selectedTier === 'D') {
-                    playRandomAudio(dTierAudios); // Play random audio if item is added to 'D' tier
+                    playRandomAudio(dTierAudios); 
                 }
             }
         }
@@ -98,5 +98,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     loadBoard();
-    loadTierSettings(); // Ensure settings are loaded initially
+    loadTierSettings(); 
 });

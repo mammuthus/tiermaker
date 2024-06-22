@@ -1,14 +1,14 @@
 let selectedTier = null;
 let draggedItem = null;
-let previousState = null; // For undo functionality
+let previousState = null; 
 
-// Audio files for 'S' tier
+
 const sTierAudios = [
     new Audio('sounds/Super.mp3'),
     new Audio('sounds/Exceptionale.mp3')
 ];
 
-// Audio files for 'D' tier
+
 const dTierAudios = [
     new Audio('sounds/Cheap.mp3'),
     new Audio('sounds/Poor.mp3')
@@ -17,7 +17,7 @@ const dTierAudios = [
 function createTierItem(text) {
     const item = document.createElement('div');
     item.className = 'tier-item-container';
-    item.draggable = true; // Make the item draggable
+    item.draggable = true; 
     item.addEventListener('dragstart', handleDragStart);
     item.addEventListener('dragend', handleDragEnd);
     
@@ -26,9 +26,9 @@ function createTierItem(text) {
     
     const trashButton = document.createElement('button');
     trashButton.className = 'trash-button';
-    trashButton.innerHTML = '&times;'; // Unicode multiplication sign (×)
+    trashButton.innerHTML = '&times;'; 
     trashButton.addEventListener('click', () => {
-        savePreviousState(); // Save state before making changes
+        savePreviousState(); 
         item.remove();
         saveBoard();
     });
@@ -79,7 +79,7 @@ function handleDrop(e) {
         const targetTier = e.target.closest('.tier-items').dataset.tier;
         const draggedItemTier = draggedItem ? draggedItem.closest('.tier-items').dataset.tier : null;
 
-        savePreviousState(); // Save state before making changes
+        savePreviousState(); 
         const newItem = createTierItem(data);
 
         if (e.target.classList.contains('tier-item-container')) {
@@ -92,9 +92,9 @@ function handleDrop(e) {
         saveBoard();
 
         if (targetTier === 'S-items' && window.soundsEnabled) {
-            playRandomAudio(sTierAudios); // Play random audio if item is moved to 'S' tier
+            playRandomAudio(sTierAudios); 
         } else if (targetTier === 'D-items' && window.soundsEnabled) {
-            playRandomAudio(dTierAudios); // Play random audio if item is moved to 'D' tier
+            playRandomAudio(dTierAudios); 
         }
     }
 }
@@ -141,7 +141,7 @@ function loadBoard() {
             }
         });
     }
-    loadTierSettings(); // Ensure tier settings are loaded after the board
+    loadTierSettings(); 
 }
 
 function clearMemory() {
@@ -159,7 +159,7 @@ function undoChanges() {
         localStorage.setItem('tierSettings', JSON.stringify(previousState.tierSettings));
         loadBoard();
         loadTierSettings();
-        previousState = null; // Clear previous state after undo
+        previousState = null; 
     }
     checkUndoState();
 }
