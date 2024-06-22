@@ -65,13 +65,21 @@ body {
 .tier-row.selected {
     box-shadow: 0 0 0 2px #000000 inset; 
     background-color: #333333; 
-    border-radius: 0; 
+    border-radius: 0;
+    position: relative;
 }
 
 .tier-row.selected::before {
     content: '★';
-    color: #000000;
-    font-size: 18px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 86px;
+    z-index: 0;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .tier-row[data-tier="S"] { background-color: #ff6f6f; }
