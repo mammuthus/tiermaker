@@ -33,11 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     applySettingsButton.addEventListener('click', () => {
-        console.log('Apply button clicked');  // Debug log
-        console.log('Settings block before:', settingsBlock.classList.contains('hidden'));  // Debug log
-        applyTierSettings();
-        settingsBlock.classList.add('hidden');  // Change from toggle() to add()
-        console.log('Settings block after:', settingsBlock.classList.contains('hidden'));  // Debug log
+        console.log('Apply button clicked');
+        console.log('Settings block before:', settingsBlock.classList.contains('hidden'));
+        applyTierSettings(tiers, itemInput, addButton);
+        settingsBlock.classList.add('hidden');
+        console.log('Settings block after:', settingsBlock.classList.contains('hidden'));
     });
 
     toggleSoundsButton.addEventListener('click', () => {

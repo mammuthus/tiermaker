@@ -16,16 +16,12 @@ function applyTierSettings() {
     });
 
     saveTierSettings(tierSettings);
+
     tiers.forEach(t => t.classList.remove('selected'));
     selectedTier = null;
     itemInput.disabled = true;
     itemInput.placeholder = "Choose the tier firstly";
     addButton.disabled = true;
-
-    const settingsBlock = document.getElementById('settings-block');
-    if (settingsBlock) {
-        settingsBlock.classList.add('hidden');
-    }
 }
 
 function saveTierSettings(tierSettings) {
