@@ -128,10 +128,11 @@ body {
 .move-button {
     background: none;
     border: none;
-    color: #666;
+    color: #818181;
     cursor: pointer;
     padding: 2px;
     margin: 0 2px;
+    font-size: 16px;
 }
 .move-button:hover {
     color: #2196f3;

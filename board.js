@@ -31,21 +31,22 @@ function createTierItem(text) {
     // Up button
     const upButton = document.createElement('button');
     upButton.className = 'move-button';
-    upButton.title = 'Move Up'; // Add title for accessibility
-    upButton.innerHTML = '<span class="material-icons" aria-hidden="true">arrow_upward</span>';
+    upButton.title = 'Выше';
+    upButton.innerHTML = '&uarr;';
     upButton.addEventListener('click', () => moveItem(item, 'up'));
 
     // Down button
     const downButton = document.createElement('button');
     downButton.className = 'move-button';
-    downButton.title = 'Move Down'; // Add title for accessibility
-    downButton.innerHTML = '<span class="material-icons" aria-hidden="true">arrow_downward</span>';
+    downButton.title = 'Ниже';
+    downButton.innerHTML = '&darr;';
     downButton.addEventListener('click', () => moveItem(item, 'down'));
 
 
 
     const trashButton = document.createElement('button');
     trashButton.className = 'trash-button';
+    trashButton.title = 'Удалить';
     trashButton.innerHTML = '&times;'; 
     trashButton.addEventListener('click', () => {
         savePreviousState(); 
