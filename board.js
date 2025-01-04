@@ -64,14 +64,14 @@ function createTierItem(text) {
     const upButton = document.createElement('button');
     upButton.className = 'move-button';
     upButton.title = 'Выше';
-    upButton.innerHTML = '&uarr;';
+    upButton.innerHTML = '&#9650;';
     upButton.addEventListener('click', () => moveItem(item, 'up'));
 
     // Down button
     const downButton = document.createElement('button');
     downButton.className = 'move-button';
     downButton.title = 'Ниже';
-    downButton.innerHTML = '&darr;';
+    downButton.innerHTML = '&#9660;';
     downButton.addEventListener('click', () => moveItem(item, 'down'));
 
 
@@ -95,20 +95,38 @@ function createTierItem(text) {
     item.appendChild(itemText);
     item.appendChild(buttonContainer); 
 
+    updateMoveButtons(item);
+
     return item;
 }
 
 
 function moveItem(item, direction) {
+    updateMoveButtons(item);
+    
+    if ((direction === 'up' && !item.previousElementSibling) || 
+        (direction === 'down' && !item.nextElementSibling)) {
+        return;
+    }
+    
     savePreviousState();
     
-    if (direction === 'up' && item.previousElementSibling) {
+    if (direction === 'up') {
         item.parentNode.insertBefore(item, item.previousElementSibling);
-    } else if (direction === 'down' && item.nextElementSibling) {
+    } else if (direction === 'down') {
         item.parentNode.insertBefore(item.nextElementSibling, item);
     }
     
     saveBoard();
+    updateMoveButtons(item);
+}
+
+function updateMoveButtons(item) {
+    const upButton = item.querySelector('.move-button:first-child');
+    const downButton = item.querySelector('.move-button:nth-child(2)');
+    
+    upButton.style.visibility = item.previousElementSibling ? 'visible' : 'hidden';
+    downButton.style.visibility = item.nextElementSibling ? 'visible' : 'hidden';
 }
 
 
