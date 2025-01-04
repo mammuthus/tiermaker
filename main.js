@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsBlock = document.getElementById('settings-block');
     const applySettingsButton = document.getElementById('apply-settings-button');
 
-    window.soundsEnabled = JSON.parse(localStorage.getItem('soundsEnabled')) ?? true;
+    window.soundsEnabled = JSON.parse(localStorage.getItem('soundsEnabled')) ?? false;
 
     toggleSoundsButton.innerHTML = `<span class="material-icons">${window.soundsEnabled ? 'volume_up' : 'volume_off'}</span>`;
 
