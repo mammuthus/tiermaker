@@ -20,7 +20,9 @@ function applyTierSettings() {
     selectedTier = null;
     itemInput.disabled = true;
     itemInput.placeholder = "Choose the tier firstly";
-    addButton.disabled = true; 
+    addButton.disabled = true;
+    
+    document.getElementById('settings-block').classList.add('hidden');
 }
 
 function saveTierSettings(tierSettings) {

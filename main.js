@@ -32,11 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
         aboutBlock.classList.toggle('hidden');
     });
 
-    applySettingsButton.addEventListener('click', () => {
-        applyTierSettings();  // Call existing settings application
-        settingsBlock.classList.add('hidden');  // Hide settings block
-    });
-    
+    applySettingsButton.addEventListener('click', applyTierSettings);
+
     toggleSoundsButton.addEventListener('click', () => {
         window.soundsEnabled = !window.soundsEnabled;
         localStorage.setItem('soundsEnabled', JSON.stringify(window.soundsEnabled)); 
