@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applySettingsButton.addEventListener('click', () => {
         applyTierSettings();
+        settingsBlock.classList.add('hidden');
+        aboutBlock.classList.toggle('hidden');
     });
 
     toggleSoundsButton.addEventListener('click', () => {
