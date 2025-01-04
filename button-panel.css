@@ -46,6 +46,14 @@
     cursor: not-allowed;
 }
 
+.button-panel button.sounds-disabled {
+    background-color: #808080;  /* gray */
+}
+
+.button-panel button.sounds-disabled:hover {
+    background-color: #666666;  /* darker gray on hover */
+}
+
 .material-icons {
     font-size: 18px;
 }

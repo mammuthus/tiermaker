@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const applySettingsButton = document.getElementById('apply-settings-button');
 
     window.soundsEnabled = JSON.parse(localStorage.getItem('soundsEnabled')) ?? false;
-
-    toggleSoundsButton.innerHTML = `<span class="material-icons">${window.soundsEnabled ? 'volume_up' : 'volume_off'}</span>`;
+    updateSoundButton();
 
     itemInput.disabled = true;
     addButton.disabled = true; 
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleSoundsButton.addEventListener('click', () => {
         window.soundsEnabled = !window.soundsEnabled;
         localStorage.setItem('soundsEnabled', JSON.stringify(window.soundsEnabled)); 
-        toggleSoundsButton.innerHTML = `<span class="material-icons">${window.soundsEnabled ? 'volume_up' : 'volume_off'}</span>`;
+        updateSoundButton();
     });
 
     tiers.forEach(tier => {
@@ -129,4 +128,15 @@ function exportAsPng() {
     }).finally(() => {
         document.body.removeChild(tempContainer);
     });
+}
+
+function updateSoundButton() {
+    const button = document.getElementById('toggle-sounds-button');
+    if (window.soundsEnabled) {
+        button.innerHTML = '<span class="material-icons">volume_up</span>';
+        button.classList.remove('sounds-disabled');
+    } else {
+        button.innerHTML = '<span class="material-icons">volume_off</span>';
+        button.classList.add('sounds-disabled');
+    }
 }
