@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleSoundsButton = document.getElementById('toggle-sounds-button');
     const settingsBlock = document.getElementById('settings-block');
     const applySettingsButton = document.getElementById('apply-settings-button');
+    const aboutButton = document.getElementById('about-button');
+    const aboutBlock = document.getElementById('about-block');
 
     window.soundsEnabled = JSON.parse(localStorage.getItem('soundsEnabled')) ?? false;
     updateSoundButton();
@@ -19,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     itemInput.disabled = true;
     addButton.disabled = true; 
     undoButton.disabled = true; 
+
+    aboutButton.addEventListener('click', () => {
+        aboutBlock.classList.toggle('hidden');
+        settingsBlock.classList.add('hidden'); // Hide settings if open
+    });
 
     settingsButton.addEventListener('click', () => {
         settingsBlock.classList.toggle('hidden');
