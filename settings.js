@@ -69,6 +69,15 @@ function exportAsPng() {
 
 function importData() {
     const file = importFile.files[0];
+    const MAX_FILE_SIZE = 1024 * 1024; // 1MB
+    if (file.size > MAX_FILE_SIZE) {
+        alert('File is too large');
+        return;
+    }
+    if (!file.name.endsWith('.json')) {
+        alert('Please select a JSON file');
+        return;
+    }
     if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
