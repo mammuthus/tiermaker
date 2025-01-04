@@ -11,18 +11,23 @@ let audioCache = {
 function initializeAudioType(type) {
     if (!window.soundsEnabled) return null;
     
-    if (type === 'S' && !audioCache.S) {
-        audioCache.S = [
-            new Audio('sounds/Super.mp3'),
-            new Audio('sounds/Exceptionale.mp3')
-        ];
-    } else if (type === 'D' && !audioCache.D) {
-        audioCache.D = [
-            new Audio('sounds/Cheap.mp3'),
-            new Audio('sounds/Poor.mp3')
-        ];
+    try {
+        if (type === 'S' && !audioCache.S) {
+            audioCache.S = [
+                new Audio('sounds/Super.mp3'),
+                new Audio('sounds/Exceptionale.mp3')
+            ];
+        } else if (type === 'D' && !audioCache.D) {
+            audioCache.D = [
+                new Audio('sounds/Cheap.mp3'),
+                new Audio('sounds/Poor.mp3')
+            ];
+        }
+        return audioCache[type];
+    } catch (error) {
+        console.error('Error initializing audio:', error);
+        return null;
     }
-    return audioCache[type];
 }
 
 function playRandomAudio(type) {
@@ -31,8 +36,12 @@ function playRandomAudio(type) {
     const audioArray = initializeAudioType(type);
     if (!audioArray) return;
     
-    const randomIndex = Math.floor(Math.random() * audioArray.length);
-    audioArray[randomIndex].play();
+    try {
+        const randomIndex = Math.floor(Math.random() * audioArray.length);
+        audioArray[randomIndex].play();
+    } catch (error) {
+        console.error('Error playing audio:', error);
+    }
 }
 
 
@@ -169,13 +178,6 @@ function handleDrop(e) {
                 playRandomAudio('D');
             }
         }
-    }
-}
-
-function playRandomAudio(audioArray) {
-    if (window.soundsEnabled) {
-        const randomIndex = Math.floor(Math.random() * audioArray.length);
-        audioArray[randomIndex].play();
     }
 }
 
