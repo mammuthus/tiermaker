@@ -2,17 +2,40 @@ let selectedTier = null;
 let draggedItem = null;
 let previousState = null; 
 
+// Audio management
+let audioCache = {
+    S: null,
+    D: null
+};
 
-const sTierAudios = [
-    new Audio('sounds/Super.mp3'),
-    new Audio('sounds/Exceptionale.mp3')
-];
+function initializeAudioType(type) {
+    if (!window.soundsEnabled) return null;
+    
+    if (type === 'S' && !audioCache.S) {
+        audioCache.S = [
+            new Audio('sounds/Super.mp3'),
+            new Audio('sounds/Exceptionale.mp3')
+        ];
+    } else if (type === 'D' && !audioCache.D) {
+        audioCache.D = [
+            new Audio('sounds/Cheap.mp3'),
+            new Audio('sounds/Poor.mp3')
+        ];
+    }
+    return audioCache[type];
+}
+
+function playRandomAudio(type) {
+    if (!window.soundsEnabled) return;
+    
+    const audioArray = initializeAudioType(type);
+    if (!audioArray) return;
+    
+    const randomIndex = Math.floor(Math.random() * audioArray.length);
+    audioArray[randomIndex].play();
+}
 
 
-const dTierAudios = [
-    new Audio('sounds/Cheap.mp3'),
-    new Audio('sounds/Poor.mp3')
-];
 
 function createTierItem(text) {
     const item = document.createElement('div');
@@ -139,10 +162,12 @@ function handleDrop(e) {
         draggedItem.remove();
         saveBoard();
 
-        if (targetTier === 'S-items' && window.soundsEnabled) {
-            playRandomAudio(sTierAudios); 
-        } else if (targetTier === 'D-items' && window.soundsEnabled) {
-            playRandomAudio(dTierAudios); 
+        if (window.soundsEnabled) {
+            if (targetTier === 'S-items') {
+                playRandomAudio('S');
+            } else if (targetTier === 'D-items') {
+                playRandomAudio('D');
+            }
         }
     }
 }
