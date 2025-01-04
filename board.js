@@ -95,15 +95,13 @@ function createTierItem(text) {
     item.appendChild(itemText);
     item.appendChild(buttonContainer); 
 
-    setTimeout(() => updateMoveButtons(item), 0);
+    updateMoveButtons(item);
 
     return item;
 }
 
 
 function moveItem(item, direction) {
-    updateMoveButtons(item);
-    
     if ((direction === 'up' && !item.previousElementSibling) || 
         (direction === 'down' && !item.nextElementSibling)) {
         return;
@@ -118,17 +116,24 @@ function moveItem(item, direction) {
     }
     
     saveBoard();
-    updateMoveButtons(item);
+    
+    // Update all items in container after move
+    const containerItems = item.parentElement.children;
+    Array.from(containerItems).forEach(updateMoveButtons);
 }
 
 function updateMoveButtons(item) {
     const upButton = item.querySelector('.move-button:first-child');
     const downButton = item.querySelector('.move-button:nth-child(2)');
-
-    const isFirstItem = !item.previousElementSibling;
+    
+    // Get all items in the same container to properly check position
+    const containerItems = Array.from(item.parentElement.children);
+    const itemIndex = containerItems.indexOf(item);
+    
+    const isFirstItem = itemIndex === 0;
+    const isLastItem = itemIndex === containerItems.length - 1;
+    
     upButton.style.visibility = isFirstItem ? 'hidden' : 'visible';
-
-    const isLastItem = !item.nextElementSibling;
     downButton.style.visibility = isLastItem ? 'hidden' : 'visible';
 }
 
