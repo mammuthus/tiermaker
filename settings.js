@@ -1,4 +1,4 @@
-function applyTierSettings() {
+function applyTierSettings(tiers, itemInput, addButton) {
     const tierSettings = [
         { tier: 'S', subtitle: document.getElementById('tier-s-subtitle').value, color: document.getElementById('tier-s-color').value },
         { tier: 'A', subtitle: document.getElementById('tier-a-subtitle').value, color: document.getElementById('tier-a-color').value },
