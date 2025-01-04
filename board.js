@@ -95,7 +95,7 @@ function createTierItem(text) {
     item.appendChild(itemText);
     item.appendChild(buttonContainer); 
 
-    updateMoveButtons(item);
+    setTimeout(() => updateMoveButtons(item), 0);
 
     return item;
 }
@@ -124,9 +124,12 @@ function moveItem(item, direction) {
 function updateMoveButtons(item) {
     const upButton = item.querySelector('.move-button:first-child');
     const downButton = item.querySelector('.move-button:nth-child(2)');
-    
-    upButton.style.visibility = item.previousElementSibling ? 'visible' : 'hidden';
-    downButton.style.visibility = item.nextElementSibling ? 'visible' : 'hidden';
+
+    const isFirstItem = !item.previousElementSibling;
+    upButton.style.visibility = isFirstItem ? 'hidden' : 'visible';
+
+    const isLastItem = !item.nextElementSibling;
+    downButton.style.visibility = isLastItem ? 'hidden' : 'visible';
 }
 
 
