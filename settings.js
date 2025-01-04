@@ -24,7 +24,7 @@ function applyTierSettings() {
 
     const settingsBlock = document.getElementById('settings-block');
     if (settingsBlock) {
-        settingsBlock.style.display = 'none';
+        settingsBlock.classList.add('hidden');
     }
 }
 
