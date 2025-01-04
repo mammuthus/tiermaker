@@ -57,7 +57,7 @@ function createTierItem(text) {
 
 
     item.appendChild(itemText);
-    item.appendChild(trashButton);
+    item.appendChild(buttonContainer); 
 
     return item;
 }
