@@ -22,13 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
     addButton.disabled = true; 
     undoButton.disabled = true; 
 
-    aboutButton.addEventListener('click', () => {
-        aboutBlock.classList.toggle('hidden');
-        settingsBlock.classList.add('hidden'); // Hide settings if open
-    });
-
     settingsButton.addEventListener('click', () => {
+        aboutBlock.classList.add('hidden');
         settingsBlock.classList.toggle('hidden');
+    });
+    
+    aboutButton.addEventListener('click', () => {
+        settingsBlock.classList.add('hidden');
+        aboutBlock.classList.toggle('hidden');
     });
 
     applySettingsButton.addEventListener('click', applyTierSettings);
