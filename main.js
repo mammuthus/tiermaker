@@ -32,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
         aboutBlock.classList.toggle('hidden');
     });
 
-    applySettingsButton.addEventListener('click', applyTierSettings);
+    applySettingsButton.addEventListener('click', () => {
+        applyTierSettings();
+        settingsBlock.classList.add('hidden'); // Hide settings block after applying settings
+    });
 
     toggleSoundsButton.addEventListener('click', () => {
         window.soundsEnabled = !window.soundsEnabled;
