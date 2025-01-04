@@ -23,7 +23,24 @@ function createTierItem(text) {
     
     const itemText = document.createElement('span');
     itemText.textContent = text;
+
     
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'button-container';
+
+    // Up button
+    const upButton = document.createElement('button');
+    upButton.className = 'move-button';
+    upButton.innerHTML = '<span class="material-icons">arrow_upward</span>';
+    upButton.addEventListener('click', () => moveItem(item, 'up'));
+
+    // Down button
+    const downButton = document.createElement('button');
+    downButton.className = 'move-button';
+    downButton.innerHTML = '<span class="material-icons">arrow_downward</span>';
+    downButton.addEventListener('click', () => moveItem(item, 'down'));
+
+
     const trashButton = document.createElement('button');
     trashButton.className = 'trash-button';
     trashButton.innerHTML = '&times;'; 
@@ -33,11 +50,31 @@ function createTierItem(text) {
         saveBoard();
     });
 
+
+    buttonContainer.appendChild(upButton);
+    buttonContainer.appendChild(downButton);
+    buttonContainer.appendChild(trashButton);
+
+
     item.appendChild(itemText);
     item.appendChild(trashButton);
 
     return item;
 }
+
+
+function moveItem(item, direction) {
+    savePreviousState();
+    
+    if (direction === 'up' && item.previousElementSibling) {
+        item.parentNode.insertBefore(item, item.previousElementSibling);
+    } else if (direction === 'down' && item.nextElementSibling) {
+        item.parentNode.insertBefore(item.nextElementSibling, item);
+    }
+    
+    saveBoard();
+}
+
 
 function handleDragStart(e) {
     e.dataTransfer.setData('text/plain', e.target.querySelector('span').textContent);
@@ -54,6 +91,13 @@ function handleDragEnd(e) {
 function handleDragOver(e) {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
+
+
+    document.querySelectorAll('.drag-over, .drag-over-item').forEach(el => {
+        el.classList.remove('drag-over', 'drag-over-item');
+    });
+
+
     if (e.target.classList.contains('tier-items')) {
         e.target.classList.add('drag-over');
     } else if (e.target.classList.contains('tier-item-container')) {

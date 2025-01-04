@@ -115,7 +115,8 @@ body {
     cursor: move;
 }
 .tier-item-container.drag-over-item {
-    border: 2px solid #ffffff;
+    border-bottom: 2px solid #cfeaff;
+    padding-bottom: 2px;
 }
 .trash-button {
     background: none;
@@ -123,6 +124,17 @@ body {
     cursor: pointer;
     color: #ff5252;
     font-size: 16px;
+}
+.move-button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 2px;
+    margin: 0 2px;
+}
+.move-button:hover {
+    color: #2196f3;
 }
 .input-form {
     margin: 20px auto;
