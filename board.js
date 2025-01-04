@@ -93,15 +93,18 @@ function createTierItem(text) {
 
 
     item.appendChild(itemText);
-    item.appendChild(buttonContainer); 
-
-    updateMoveButtons(item);
-
+    item.appendChild(buttonContainer);
+    
+    // Only update buttons after item is added to DOM
+    setTimeout(() => updateMoveButtons(item), 0);
+    
     return item;
 }
 
 
 function moveItem(item, direction) {
+    if (!item || !item.parentElement) return;
+
     if ((direction === 'up' && !item.previousElementSibling) || 
         (direction === 'down' && !item.nextElementSibling)) {
         return;
@@ -119,22 +122,25 @@ function moveItem(item, direction) {
     
     // Update all items in container after move
     const containerItems = item.parentElement.children;
-    Array.from(containerItems).forEach(updateMoveButtons);
+    if (item.parentElement) {
+        Array.from(item.parentElement.children).forEach(updateMoveButtons);
+    }
 }
 
 function updateMoveButtons(item) {
+    if (!item || !item.parentElement) return;
+    
     const upButton = item.querySelector('.move-button:first-child');
     const downButton = item.querySelector('.move-button:nth-child(2)');
     
-    // Get all items in the same container to properly check position
     const containerItems = Array.from(item.parentElement.children);
     const itemIndex = containerItems.indexOf(item);
     
     const isFirstItem = itemIndex === 0;
     const isLastItem = itemIndex === containerItems.length - 1;
     
-    upButton.style.visibility = isFirstItem ? 'hidden' : 'visible';
-    downButton.style.visibility = isLastItem ? 'hidden' : 'visible';
+    if (upButton) upButton.style.visibility = isFirstItem ? 'hidden' : 'visible';
+    if (downButton) downButton.style.visibility = isLastItem ? 'hidden' : 'visible';
 }
 
 
