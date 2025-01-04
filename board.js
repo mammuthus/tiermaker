@@ -31,14 +31,17 @@ function createTierItem(text) {
     // Up button
     const upButton = document.createElement('button');
     upButton.className = 'move-button';
-    upButton.innerHTML = '<span class="material-icons">arrow_upward</span>';
+    upButton.title = 'Move Up'; // Add title for accessibility
+    upButton.innerHTML = '<span class="material-icons" aria-hidden="true">arrow_upward</span>';
     upButton.addEventListener('click', () => moveItem(item, 'up'));
 
     // Down button
     const downButton = document.createElement('button');
     downButton.className = 'move-button';
-    downButton.innerHTML = '<span class="material-icons">arrow_downward</span>';
+    downButton.title = 'Move Down'; // Add title for accessibility
+    downButton.innerHTML = '<span class="material-icons" aria-hidden="true">arrow_downward</span>';
     downButton.addEventListener('click', () => moveItem(item, 'down'));
+
 
 
     const trashButton = document.createElement('button');
@@ -163,7 +166,7 @@ function saveBoard() {
     document.querySelectorAll('.tier-items').forEach(row => {
         const tier = row.dataset.tier.replace('-items', '');
         boardData[tier] = [];
-        row.querySelectorAll('.tier-item-container span').forEach(item => {
+        row.querySelectorAll('.tier-item-container > span:first-child').forEach(item => {
             boardData[tier].push(item.textContent);
         });
     });
