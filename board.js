@@ -245,10 +245,11 @@ function loadBoard() {
                     const item = createTierItem(itemText);
                     row.appendChild(item);
                 });
+                Array.from(row.children).forEach(updateMoveButtons);
             }
         });
     }
-    loadTierSettings(); 
+    loadTierSettings();
 }
 
 function clearMemory() {
