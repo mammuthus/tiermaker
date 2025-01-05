@@ -96,7 +96,7 @@ function createTierItem(text) {
     item.appendChild(buttonContainer);
     
     // Only update buttons after item is added to DOM
-    setTimeout(() => updateMoveButtons(item), 0);
+    requestAnimationFrame(() => updateMoveButtons(item));
     
     return item;
 }
