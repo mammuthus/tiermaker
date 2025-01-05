@@ -72,8 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const tierItems = document.querySelector(`.tier-items[data-tier="${selectedTier}-items"]`);
             const item = createTierItem(text);
             tierItems.appendChild(item);
+
+            Array.from(tierItems.children).forEach(child => {
+                updateMoveButtons(child);
+            });
+
             itemInput.value = '';
             saveBoard();
+            
             if (window.soundsEnabled) {
                 if (selectedTier === 'S') {
                     playRandomAudio(sTierAudios); 
