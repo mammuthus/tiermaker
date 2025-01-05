@@ -64,14 +64,14 @@ function createTierItem(text) {
     const upButton = document.createElement('button');
     upButton.className = 'move-button';
     upButton.title = 'Выше';
-    upButton.innerHTML = '&#9650;';
+    upButton.innerHTML = '&#8593;';
     upButton.addEventListener('click', () => moveItem(item, 'up'));
 
     // Down button
     const downButton = document.createElement('button');
     downButton.className = 'move-button';
     downButton.title = 'Ниже';
-    downButton.innerHTML = '&#9660;';
+    downButton.innerHTML = '&#8595;';
     downButton.addEventListener('click', () => moveItem(item, 'down'));
 
 
