@@ -1,3 +1,47 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/material-icons/MaterialIcons-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100;
+    src: url('fonts/roboto/roboto100.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: url('fonts/roboto/roboto300.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/roboto/roboto400.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: url('fonts/roboto/roboto700.woff2') format('woff2');
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+  }
 body {
     font-family: 'Roboto', Arial, sans-serif;
     text-align: center;
@@ -10,19 +54,16 @@ body {
     border-collapse: collapse;
     width: 80%;
     table-layout: fixed;
-    border-radius: 0 !important;
 }
 .tier-table td {
     border: 1px solid #444;
     padding: 10px;
     vertical-align: middle;
     text-align: center;
-    border-radius: 0 !important;
 }
 .tier-table .tier-row {
     width: 100px;
     height: 100px;
-    border-radius: 0 !important;
     position: relative;
 }
 .tier-row {
@@ -30,7 +71,6 @@ body {
     cursor: pointer;
     transition: box-shadow 0.2s ease, background-color 0.2s ease;
     font-weight: bold;
-    border-radius: 0;
 }
 .tier-row span {
     display: block;
@@ -249,12 +289,11 @@ body {
 }
 .settings-buttons {
     display: grid;
-    grid-template-columns: 1fr 1fr;  /* 2 columns */
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-top: 20px;
     width: 100%;
 }
-
 .settings-button {
     padding: 10px 20px;
     background-color: #2196f3;
@@ -267,13 +306,11 @@ body {
     align-items: center;
     gap: 5px;
     justify-content: center;
-    min-width: 0;  /* Allow button to shrink */
+    min-width: 0;
 }
-
 #clear-button {
     background-color: #f44336;
 }
-
 #clear-button:hover {
     background-color: #e53935;
 }
@@ -283,7 +320,6 @@ body {
 .settings-button.gray-button {
     background-color: #666666;
 }
-
 .settings-button.gray-button:hover {
     background-color: #808080;
 }
@@ -322,7 +358,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    order: 2;  /* Move below changelog */
+    order: 2;
 }
 .version-label {
     color: #888;
@@ -331,7 +367,6 @@ body {
 }
 .version-symbols {
     color: #666;
-    font-family: serif;
     letter-spacing: 4px;
     font-size: 16px;
 }
@@ -339,7 +374,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    order: 1;  /* Keep above version-info */
+    order: 1;
 }
 .changelog-table th, 
 .changelog-table td {
@@ -356,8 +391,6 @@ body {
 .changelog-table tr:hover {
     background-color: #333;
 }
-
-
 .button-panel {
     position: fixed;
     bottom: 20px;
@@ -366,24 +399,17 @@ body {
     width: auto;
     padding: 10px 20px;
     display: flex;
-    gap: 10px;
-    background-color: rgba(18, 18, 18, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-out;
+    gap: 7px;
 }
-
 .button-panel.hidden-panel {
     transform: translateX(-50%) translateY(calc(100% + 20px));
 }
-
 #toggle-panel-button {
     background-color: #4CAF50;
     min-width: 40px;
     margin: 0;
     transition: all 0.3s ease-out;
 }
-
 .button-panel.hidden-panel #toggle-panel-button.show-unhide {
     position: fixed;
     bottom: 20px;
@@ -395,13 +421,9 @@ body {
     z-index: 1001;
     transition: all 0.3s ease-out;
 }
-
 #toggle-panel-button:hover {
     background-color: #45a049;
 }
-
-
-
 .button-panel button {
     padding: 10px 15px;
     background-color: #2196f3;
@@ -432,11 +454,9 @@ body {
 }
 .button-panel button.sounds-disabled {
     background-color: #808080;
-   /* gray */
 }
 .button-panel button.sounds-disabled:hover {
     background-color: #666666;
-   /* darker gray on hover */
 }
 .material-icons {
     font-size: 18px;
