@@ -2,50 +2,6 @@ let selectedTier = null;
 let draggedItem = null;
 let previousState = null; 
 
-// Audio management
-let audioCache = {
-    S: null,
-    D: null
-};
-
-function initializeAudioType(type) {
-    if (!window.soundsEnabled) return null;
-    
-    try {
-        if (type === 'S' && !audioCache.S) {
-            audioCache.S = [
-                new Audio('sounds/Super.mp3'),
-                new Audio('sounds/Exceptionale.mp3')
-            ];
-        } else if (type === 'D' && !audioCache.D) {
-            audioCache.D = [
-                new Audio('sounds/Cheap.mp3'),
-                new Audio('sounds/Poor.mp3')
-            ];
-        }
-        return audioCache[type];
-    } catch (error) {
-        console.error('Error initializing audio:', error);
-        return null;
-    }
-}
-
-function playRandomAudio(type) {
-    if (!window.soundsEnabled) return;
-    
-    const audioArray = initializeAudioType(type);
-    if (!audioArray) return;
-    
-    try {
-        const randomIndex = Math.floor(Math.random() * audioArray.length);
-        audioArray[randomIndex].play();
-    } catch (error) {
-        console.error('Error playing audio:', error);
-    }
-}
-
-
-
 function createTierItem(text) {
     const item = document.createElement('div');
     item.className = 'tier-item-container';
@@ -60,21 +16,17 @@ function createTierItem(text) {
     const buttonContainer = document.createElement('div');
     buttonContainer.className = 'button-container';
 
-    // Up button
     const upButton = document.createElement('button');
     upButton.className = 'move-button';
     upButton.title = 'Выше';
     upButton.innerHTML = '&#11014;';
     upButton.addEventListener('click', () => moveItem(item, 'up'));
 
-    // Down button
     const downButton = document.createElement('button');
     downButton.className = 'move-button';
     downButton.title = 'Ниже';
     downButton.innerHTML = '&#11015;';
     downButton.addEventListener('click', () => moveItem(item, 'down'));
-
-
 
     const trashButton = document.createElement('button');
     trashButton.className = 'trash-button';
@@ -86,18 +38,15 @@ function createTierItem(text) {
         saveBoard();
     });
 
-
     buttonContainer.appendChild(upButton);
     buttonContainer.appendChild(downButton);
     buttonContainer.appendChild(trashButton);
-
 
     item.appendChild(itemText);
     item.appendChild(buttonContainer);
     
     return item;
 }
-
 
 function moveItem(item, direction) {
     if (!item || !item.parentElement) return;
@@ -117,7 +66,6 @@ function moveItem(item, direction) {
     
     saveBoard();
     
-    // Update all items in container after move
     const containerItems = item.parentElement.children;
     if (item.parentElement) {
         Array.from(item.parentElement.children).forEach(updateMoveButtons);

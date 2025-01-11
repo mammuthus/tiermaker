@@ -61,7 +61,7 @@
     </div>
 
     <div id="settings-block" class="settings-block hidden">
-        <h2>Настройки</h2>
+        <h3>Настройки</h3>
         <div class="settings-grid">
             <div class="settings-row">
                 <input type="color" id="tier-s-color" class="color-picker" value="#ff6f6f">
@@ -90,9 +90,18 @@
         </div>
 
         <div class="settings-buttons">
-            <button id="apply-settings-button" class="settings-button">Применить настройки</button>
-            <button id="export-json-button" class="settings-button"><span class="material-icons">save_alt</span> Сохранить доску в JSON</button>
-            <button id="import-button" class="settings-button"><span class="material-icons">file_upload</span> Загрузить доску из JSON</button>
+            <button id="apply-settings-button" class="settings-button">
+                <span class="material-icons">save</span> Применить настройки
+            </button>
+            <button id="clear-button" class="settings-button">
+                <span class="material-icons">delete</span> Очистить доску и все настройки
+            </button>
+            <button id="export-json-button" class="settings-button gray-button">
+                <span class="material-icons">save_alt</span> Сохранить доску в JSON
+            </button>
+            <button id="import-button" class="settings-button gray-button">
+                <span class="material-icons">file_upload</span> Загрузить доску из JSON
+            </button>
         </div>
     </div>
 
@@ -110,6 +119,10 @@
                         <td>2025-01-05</td>
                         <td>Улучшения UI, переработка drag'n'drop, изменена система звуков</td>
                     </tr>
+                    <tr>
+                        <td>2025-01-11</td>
+                        <td>Улучшения UI, исправлена работа save/load, звуки отключены</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -117,7 +130,7 @@
         <div class="version-info">
             <div>
                 <span class="version-label">Версия:</span>
-                <span class="version-number">1.0.1</span>
+                <span class="version-number">1.0.2</span>
             </div>
             <div class="version-symbols">🜏 🜠 🜱</div>
         </div>
@@ -125,13 +138,11 @@
             
 
     <div class="button-panel">
-        <button id="clear-button">Очистить всё</button>
         <button id="export-png-button"><span class="material-icons">image</span> Сохранить картинкой</button>
         <input type="file" id="import-file" accept=".json" hidden>
-
-        <button id="toggle-sounds-button" title="Toggle Sounds"><span class="material-icons">volume_up</span></button>
-        <button id="settings-button" class="settings-button"><span class="material-icons">settings</span></button>
-        <button id="about-button" title="About"><span class="material-icons">help_outline</span></button>
+        <button id="settings-button" class="settings-button"><span class="material-icons">settings</span> Настройки</button>
+        <button id="about-button" title="About"><span class="material-icons">help_outline</span> </button>
+        <button id="toggle-panel-button"></button>
     </div>
 
     <script src="html2canvas.min.js"></script>
